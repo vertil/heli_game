@@ -1,0 +1,5 @@
+/home/vertil/dev/06_heli_game/build/CMakeFiles/rebuild_cache.dir
+/home/vertil/dev/06_heli_game/build/CMakeFiles/edit_cache.dir
+/home/vertil/dev/06_heli_game/build/CMakeFiles/game_heli.dir
+/home/vertil/dev/06_heli_game/build/CMakeFiles/lodepng.dir
+/home/vertil/dev/06_heli_game/build/CMakeFiles/glad.dir
