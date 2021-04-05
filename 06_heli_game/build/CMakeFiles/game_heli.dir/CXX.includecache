@@ -16,6 +16,10 @@ cstdint
 iostream
 -
 
+/home/vertil/dev/06_heli_game/src/enemy.hxx
+engine.hxx
+/home/vertil/dev/06_heli_game/src/engine.hxx
+
 /home/vertil/dev/06_heli_game/src/engine.hxx
 vector
 -
@@ -39,6 +43,8 @@ stdexcept
 -
 SDL2/SDL.h
 -
+thread
+-
 glm/glm.hpp
 /home/vertil/dev/06_heli_game/src/glm/glm.hpp
 glm/gtc/matrix_transform.hpp
@@ -51,14 +57,20 @@ animation.hxx
 /home/vertil/dev/06_heli_game/src/animation.hxx
 heli.hxx
 /home/vertil/dev/06_heli_game/src/heli.hxx
+enemy.hxx
+/home/vertil/dev/06_heli_game/src/enemy.hxx
+rocket.hxx
+/home/vertil/dev/06_heli_game/src/rocket.hxx
+target.hxx
+/home/vertil/dev/06_heli_game/src/target.hxx
 lodepng.h
 /home/vertil/dev/06_heli_game/src/lodepng.h
 glad/glad.h
 /home/vertil/dev/06_heli_game/src/glad/glad.h
 
 /home/vertil/dev/06_heli_game/src/game.cxx
-engine.hxx
-/home/vertil/dev/06_heli_game/src/engine.hxx
+level.hxx
+/home/vertil/dev/06_heli_game/src/level.hxx
 
 /home/vertil/dev/06_heli_game/src/glad/glad.h
 KHR/khrplatform.h
@@ -1471,12 +1483,20 @@ detail/func_vector_relational.inl
 /home/vertil/dev/06_heli_game/src/heli.hxx
 cstdint
 -
+iostream
+-
+structs.hxx
+/home/vertil/dev/06_heli_game/src/structs.hxx
 glm/glm.hpp
 /home/vertil/dev/06_heli_game/src/glm/glm.hpp
 glm/gtc/matrix_transform.hpp
 /home/vertil/dev/06_heli_game/src/glm/gtc/matrix_transform.hpp
 glm/gtc/type_ptr.hpp
 /home/vertil/dev/06_heli_game/src/glm/gtc/type_ptr.hpp
+
+/home/vertil/dev/06_heli_game/src/level.hxx
+engine.hxx
+/home/vertil/dev/06_heli_game/src/engine.hxx
 
 /home/vertil/dev/06_heli_game/src/lodepng.h
 string.h
@@ -1492,5 +1512,13 @@ iostream
 lodepng.h
 /home/vertil/dev/06_heli_game/src/lodepng.h
 
+/home/vertil/dev/06_heli_game/src/rocket.hxx
+engine.hxx
+/home/vertil/dev/06_heli_game/src/engine.hxx
+
 /home/vertil/dev/06_heli_game/src/structs.hxx
+
+/home/vertil/dev/06_heli_game/src/target.hxx
+engine.hxx
+/home/vertil/dev/06_heli_game/src/engine.hxx
 

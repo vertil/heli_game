@@ -6,7 +6,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "/home/vertil/dev/06_heli_game/build/CMakeFiles/3.18.4/CMakeSystem.cmake"
+			"path" : "/home/vertil/dev/06_heli_game/build/CMakeFiles/3.19.7/CMakeSystem.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -15,11 +15,11 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "/home/vertil/dev/06_heli_game/build/CMakeFiles/3.18.4/CMakeCXXCompiler.cmake"
+			"path" : "/home/vertil/dev/06_heli_game/build/CMakeFiles/3.19.7/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isGenerated" : true,
-			"path" : "/home/vertil/dev/06_heli_game/build/CMakeFiles/3.18.4/CMakeCCompiler.cmake"
+			"path" : "/home/vertil/dev/06_heli_game/build/CMakeFiles/3.19.7/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -70,16 +70,6 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/share/cmake/Modules/Internal/CMakeCheckCompilerFlag.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/share/cmake/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
 		},
 		{
 			"isCMake" : true,
