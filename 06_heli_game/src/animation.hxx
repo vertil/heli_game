@@ -13,7 +13,7 @@ class animation{
     bool active=false;
 
     //number of opengl texture
-    uint8_t texture_number=0;
+    uint8_t texture_number=1;
 
     //buff)
     sprite buff;
@@ -107,6 +107,7 @@ public:
 
     }
     void start(){
+        //std::cout<<"start animation"<<std::endl;
         active=true;
         position=0;
     }

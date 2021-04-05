@@ -20,10 +20,16 @@ add_executable(game_heli
 
                             engine.hxx
                             game.cxx
+
                             structs.hxx
                             animation.hxx
                             heli.hxx
                             sound.hxx
+                            level.hxx
+                            enemy.hxx
+                            rocket.hxx
+                            target.hxx
+                            heal.hxx
                             )
 target_link_libraries(game_heli PRIVATE ${SDL2_LIBRARIES})
 target_include_directories(game_heli PRIVATE ${SDL2_INCLUDE_DIRS})

@@ -1,0 +1,13 @@
+map1.png
+0.6 0.0 start_position
+3 hp
+3 amount_of_enemies
+-0.8 0.2 0.5 0.4
+-0.6 0.6 0.3 0.4
+0.2 -0.8 0.2 0.2
+2 amount_of_targets:
+9 -0.7 0.45 0.4 
+7 -0.75 -0.75 0.4
+1 amount_of_heals:
+0.15 0.15
+0.74 -0.6 0.2 base:

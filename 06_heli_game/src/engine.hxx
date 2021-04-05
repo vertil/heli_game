@@ -17,6 +17,10 @@
 #include "structs.hxx"
 #include "animation.hxx"
 #include "heli.hxx"
+#include "enemy.hxx"
+#include "rocket.hxx"
+#include "target.hxx"
+#include "heal.hxx"
 #include "lodepng.h"
 #include "glad/glad.h"
 
@@ -53,9 +57,9 @@ class engine{
     SDL_Window *window;
     SDL_Event event_log;
     SDL_Renderer *rend;
-    //----
-    animation* blow;
-    heli* helicopter;
+    //---hp
+    triangle hp1;
+    triangle hp2;
 public:
     engine(){
         std::stringstream serr;
@@ -80,8 +84,8 @@ public:
         window=SDL_CreateWindow("Loop",
                                   SDL_WINDOWPOS_CENTERED,
                                   SDL_WINDOWPOS_CENTERED,
-                                  1280,
-                                  720,
+                                  1000,
+                                  1000,
                                   SDL_WINDOW_OPENGL
                                   );
 
@@ -161,45 +165,78 @@ public:
 
            std::cout<<"sas"<<std::endl;
 
-           glGenTextures(2, tex_handl); //texture descriptor
+           glGenTextures(15, tex_handl); //texture descriptor
            OM_GL_CHECK()
 
     }
     void initData(){
-        blow=new animation(1,5,4);
-        helicopter=new heli(2,3);
+        //blow=new animation(1,5,4);
+        //helicopter=new heli(2,3);
 
-        body1.v[0].x=-0.15;
-        body1.v[0].y=-0.15;
+        body1.v[0].x=-0.1;
+        body1.v[0].y=-0.1;
         body1.v[0].tex_x=0.0;
         body1.v[0].tex_y=1.0;
                 //2
-                body1.v[1].x=-0.15;
-                body1.v[1].y=0.15;
+                body1.v[1].x=-0.1;
+                body1.v[1].y=0.1;
                 body1.v[1].tex_x=0.0;
                 body1.v[1].tex_y=0.0;
                 //3
-                body1.v[2].x=0.15;
-                body1.v[2].y=-0.15;
+                body1.v[2].x=0.1;
+                body1.v[2].y=-0.1;
                 body1.v[2].tex_x=1.0;
                 body1.v[2].tex_y=1.0;
                 //
-                body2.v[0].x=-0.15;
-                    body2.v[0].y=0.15;
+                body2.v[0].x=-0.1;
+                    body2.v[0].y=0.1;
                     body2.v[0].tex_x=0.0;
                     body2.v[0].tex_y=0.0;
                     //2
-               body2.v[1].x=0.15;
-               body2.v[1].y=0.15;
+               body2.v[1].x=0.1;
+               body2.v[1].y=0.1;
                body2.v[1].tex_x=1.0;
                body2.v[1].tex_y=0.0;
                     //3
-               body2.v[2].x=0.15;
-               body2.v[2].y=-0.15;
+               body2.v[2].x=0.1;
+               body2.v[2].y=-0.1;
                body2.v[2].tex_x=1.0;
                body2.v[2].tex_y=1.0;
 
-        blow->setPlace(body1,body2);
+        //blow->setPlace(body1,body2);
+        //--------hp
+
+               hp1.v[0].x=-0.03;
+               hp1.v[0].y=-0.03;
+               hp1.v[0].tex_x=0.0;
+               hp1.v[0].tex_y=1.0;
+                       //2
+                       hp1.v[1].x=-0.03;
+                       hp1.v[1].y=0.03;
+                       hp1.v[1].tex_x=0.0;
+                       hp1.v[1].tex_y=0.0;
+                       //3
+                       hp1.v[2].x=0.03;
+                       hp1.v[2].y=-0.03;
+                       hp1.v[2].tex_x=1.0;
+                       hp1.v[2].tex_y=1.0;
+                       //
+                       hp2.v[0].x=-0.03;
+                           hp2.v[0].y=0.03;
+                           hp2.v[0].tex_x=0.0;
+                           hp2.v[0].tex_y=0.0;
+                           //2
+                      hp2.v[1].x=0.03;
+                      hp2.v[1].y=0.03;
+                      hp2.v[1].tex_x=1.0;
+                      hp2.v[1].tex_y=0.0;
+                           //3
+                      hp2.v[2].x=0.03;
+                      hp2.v[2].y=-0.03;
+                      hp2.v[2].tex_x=1.0;
+                      hp2.v[2].tex_y=1.0;
+
+
     }
     ~engine(){
         SDL_DestroyRenderer(rend);
@@ -245,7 +282,7 @@ public:
                 return false;
             }else if(event_log.type==SDL_KEYDOWN){
                 if(event_log.key.keysym.scancode==SDL_SCANCODE_G){
-                    blow->start();
+                    //blow->start();
                 }else if(event_log.key.keysym.scancode==SDL_SCANCODE_W){
                     is_forward=true;
                 }else if(event_log.key.keysym.scancode==SDL_SCANCODE_A){
@@ -265,12 +302,12 @@ public:
                 return true;
             }else if(event_log.type==SDL_MOUSEWHEEL){
                 if(event_log.wheel.y>0){
-                    helicopter->upSpeed();
+                    //helicopter->upSpeed();
 
                     return true;
                 }
                 if(event_log.wheel.y<0){
-                    helicopter->downSpeed();
+                    //helicopter->downSpeed();
 
                     return true;
                 }
@@ -652,29 +689,59 @@ public:
         render_triangle(t.triag_1);
         render_triangle(t.triag_2);
     }
+    void render_background(){
+       activateProgBackground(0);
+       render_triangle(background1);
+       render_triangle(background2);
+
+    }
+    void render_hp(uint8_t hp,bool cargo_open){
+        float g=-0.95f;
+        for(int i=0;i<hp;i++){
+            activateProgBody(12,glm::translate(glm::mat4(1.0f),glm::vec3(g,0.95f,0.0f)));
+            render_triangle(hp1);
+            render_triangle(hp2);
+
+            g+=0.1;
+        }
+        if(cargo_open==true){
+            activateProgBody(13,glm::translate(glm::mat4(1.0f),glm::vec3(g,0.95f,0.0f)));
+            render_triangle(hp1);
+            render_triangle(hp2);
+        }
+
+    }
+    void render_body(){
+        render_triangle(body1);
+        render_triangle(body2);
+    }
     void render(){
+        //nxt 3 lines = render_background
         activateProgBackground(0);
         render_triangle(background1);
         render_triangle(background2);
 
 
-        if(blow->isactive()){
+
+        //activateProgBody(helicopter->getBodyTexNum(),helicopter->getMoveMat());
+        render_triangle(body1);
+        render_triangle(body2);
+
+        /*if(blow->isactive()){
             activateProgBody(blow->get_tex_num(),helicopter->getMoveMat());
             render_sprite(blow->getframe());
 
-        }
-        activateProgBody(helicopter->getBodyTexNum(),helicopter->getMoveMat());
+        }*/
+
+        //activateProgBody(helicopter->getBladesTexNum(),helicopter->getWingMat());
         render_triangle(body1);
         render_triangle(body2);
 
-        activateProgBody(helicopter->getBladesTexNum(),helicopter->getWingMat());
-        render_triangle(body1);
-        render_triangle(body2);
 
 
     }
     void logic(){
-        if(is_forward){
+        /*if(is_forward){
             helicopter->move();
         }
         switch (rotation) {
@@ -685,7 +752,14 @@ public:
                 helicopter->rightRotate();
                 break;
         }
-        helicopter->rotateWing();
+        helicopter->rotateWing();*/
+    }
+    triangle gettriangle(int a){
+        if(a==1){
+            return body1;
+        }else{
+            return body2;
+        }
     }
 };
 //tests for gl functions

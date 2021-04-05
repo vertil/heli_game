@@ -208,6 +208,7 @@ CMakeFiles/game_heli.dir/game.cxx.o
  /home/vertil/dev/06_heli_game/src/glm/vec3.hpp
  /home/vertil/dev/06_heli_game/src/glm/vec4.hpp
  /home/vertil/dev/06_heli_game/src/glm/vector_relational.hpp
+ /home/vertil/dev/06_heli_game/src/heal.hxx
  /home/vertil/dev/06_heli_game/src/heli.hxx
  /home/vertil/dev/06_heli_game/src/level.hxx
  /home/vertil/dev/06_heli_game/src/lodepng.h

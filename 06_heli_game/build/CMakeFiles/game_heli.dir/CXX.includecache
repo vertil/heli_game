@@ -63,6 +63,8 @@ rocket.hxx
 /home/vertil/dev/06_heli_game/src/rocket.hxx
 target.hxx
 /home/vertil/dev/06_heli_game/src/target.hxx
+heal.hxx
+/home/vertil/dev/06_heli_game/src/heal.hxx
 lodepng.h
 /home/vertil/dev/06_heli_game/src/lodepng.h
 glad/glad.h
@@ -1479,6 +1481,10 @@ detail/setup.hpp
 /home/vertil/dev/06_heli_game/src/glm/detail/setup.hpp
 detail/func_vector_relational.inl
 /home/vertil/dev/06_heli_game/src/glm/detail/func_vector_relational.inl
+
+/home/vertil/dev/06_heli_game/src/heal.hxx
+engine.hxx
+/home/vertil/dev/06_heli_game/src/engine.hxx
 
 /home/vertil/dev/06_heli_game/src/heli.hxx
 cstdint

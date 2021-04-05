@@ -1,5 +1,7 @@
 #pragma once
 #include <cstdint>
+#include <iostream>
+#include "structs.hxx"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
@@ -14,14 +16,17 @@ class heli{
 
     float angle=0.0f;
 
-
     float speed=0.5f;
+
 
 
 public:
     heli(uint8_t number_body_tex_in,uint8_t number_blades_tex_in){
         number_body_tex=number_body_tex_in;
         number_blades_tex=number_blades_tex_in;
+    }
+    void set_start(float x_in,float y_in){
+        moveMat*=glm::translate(moveMat, glm::vec3(x_in,y_in,0.0f));
     }
     //moving
     void move(){
@@ -45,32 +50,41 @@ public:
                                       glm::vec3(0.0f,0.0f,1.0f));
     }
     void leftRotate(){
-        buff=glm::mat4(1.0f);
-        buff=glm::rotate(buff,
-                             glm::radians(2.0f),
-                             glm::vec3(0.0f,0.0f,1.0f));
-        moveMat*=buff;
+        if(speed>0.04f || speed<-0.04f){
+            buff=glm::mat4(1.0f);
+            buff=glm::rotate(buff,
+                                 glm::radians(2.0f),
+                                 glm::vec3(0.0f,0.0f,1.0f));
+            moveMat*=buff;
+        }
+
     }
     void rightRotate(){
-        buff=glm::mat4(1.0f);
-        buff=glm::rotate(buff,
-                             glm::radians(-2.0f),
-                             glm::vec3(0.0f,0.0f,1.0f));
+        if(speed>0.04f || speed<-0.04f){
+            buff=glm::mat4(1.0f);
+            buff=glm::rotate(buff,
+                                 glm::radians(-2.0f),
+                                 glm::vec3(0.0f,0.0f,1.0f));
 
 
 
-        moveMat*=buff;
+            moveMat*=buff;
+        }
+
     }
     //speed
     void upSpeed(){
         speed+=0.05f;
-
+        std::cout<<std::to_string(speed)<<std::endl;
 
     }
     void downSpeed(){
         speed-=0.05f;
+        std::cout<<std::to_string(speed)<<std::endl;
+
 
     }
+
     glm::mat4 getMoveMat(){
         return moveMat;
     }

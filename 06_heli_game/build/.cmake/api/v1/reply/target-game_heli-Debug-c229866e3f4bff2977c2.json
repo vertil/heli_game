@@ -32,12 +32,6 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 35,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
 				"line" : 36,
 				"parent" : 0
 			},
@@ -48,9 +42,15 @@
 				"parent" : 0
 			},
 			{
-				"command" : 2,
+				"command" : 1,
 				"file" : 0,
 				"line" : 38,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 39,
 				"parent" : 0
 			}
 		]
@@ -162,7 +162,8 @@
 				6,
 				7,
 				8,
-				9
+				9,
+				10
 			]
 		},
 		{
@@ -224,6 +225,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "target.hxx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "heal.hxx",
 			"sourceGroupIndex" : 0
 		}
 	],
