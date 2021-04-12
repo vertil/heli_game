@@ -1,4 +1,4 @@
-#include "level.hxx"
+#include "menu.hxx"
 
 int main(int, char **){
 
@@ -75,22 +75,66 @@ int main(int, char **){
         std::cout<<"failed to load bip.png"<<std::endl;
         return EXIT_FAILURE;
     }
-
-
+    if (!eng.load_texture("materials/menu.png",14)){
+        std::cout<<"failed to load bip.png"<<std::endl;
+        return EXIT_FAILURE;
+    }
+    if (!eng.load_texture("materials/selectlevel.png",15)){
+        std::cout<<"failed to load bip.png"<<std::endl;
+        return EXIT_FAILURE;
+    }
+    if (!eng.load_texture("materials/select.png",16)){
+        std::cout<<"failed to load bip.png"<<std::endl;
+        return EXIT_FAILURE;
+    }
+    //
     eng.initData();
     eng.initfTriagBackground();
+    eng.initAudio();
 
 
-    level level_1("materials/map2.png",&eng);
+
+
+    gameMenu menu(&eng);
+
+    bool q=true;
+    while(q){
+        if(!menu.getRunlevelBool()==true){
+            q=menu.menuloop();
+
+        }
+        if(q==true){
+            bool a=true;
+            if(menu.selectLevelLoop()==true){
+                eng.playMusic();
+                level level(menu.getSelectedLevel(),&eng);
+                level.level_loop();
+                eng.stopMusic();
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+    //level level_1("materials/map2.png",&eng);
 
     /*if(level_1.level_loop()==false){
         std::cout<<"konec"<<std::endl;
     }*/
 
-    level level_2(1,&eng);
+    /*level level_2(1,&eng);
     if(level_2.level_loop()==false){
         std::cout<<"konec"<<std::endl;
-    }
+    }*/
 
 
 

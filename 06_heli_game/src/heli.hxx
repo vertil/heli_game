@@ -75,12 +75,12 @@ public:
     //speed
     void upSpeed(){
         speed+=0.05f;
-        std::cout<<std::to_string(speed)<<std::endl;
+        //std::cout<<std::to_string(speed)<<std::endl;
 
     }
     void downSpeed(){
         speed-=0.05f;
-        std::cout<<std::to_string(speed)<<std::endl;
+        //std::cout<<std::to_string(speed)<<std::endl;
 
 
     }

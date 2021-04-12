@@ -30,10 +30,14 @@ add_executable(game_heli
                             rocket.hxx
                             target.hxx
                             heal.hxx
+                            menu.hxx
                             )
 target_link_libraries(game_heli PRIVATE ${SDL2_LIBRARIES})
 target_include_directories(game_heli PRIVATE ${SDL2_INCLUDE_DIRS})
 target_link_libraries(game_heli PRIVATE SDL2::SDL2 SDL2::SDL2main)
 target_link_libraries(game_heli PRIVATE glad)
 target_link_libraries(game_heli PRIVATE lodepng)
+target_include_directories(game_heli PUBLIC ${SDL2_MIXER_INCLUDE_DIR})
+target_link_libraries(game_heli PUBLIC -lSDL2_mixer)
+
 target_compile_features(game_heli PUBLIC cxx_std_17)

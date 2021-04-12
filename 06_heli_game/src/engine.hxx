@@ -11,6 +11,7 @@
 #include <stdexcept>
 #include <SDL2/SDL.h>
 #include <thread>
+#include <SDL2/SDL_mixer.h>
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
@@ -22,6 +23,8 @@
 #include "target.hxx"
 #include "heal.hxx"
 #include "lodepng.h"
+
+
 #include "glad/glad.h"
 
 
@@ -60,6 +63,9 @@ class engine{
     //---hp
     triangle hp1;
     triangle hp2;
+    //audio
+    std::vector<Mix_Chunk *> chunks;
+    Mix_Music *gMusic=NULL;
 public:
     engine(){
         std::stringstream serr;
@@ -165,7 +171,7 @@ public:
 
            std::cout<<"sas"<<std::endl;
 
-           glGenTextures(15, tex_handl); //texture descriptor
+           glGenTextures(20, tex_handl); //texture descriptor
            OM_GL_CHECK()
 
     }
@@ -238,7 +244,63 @@ public:
 
 
     }
+    void initAudio(){
+        /*int flags=MIX_INIT_MP3;
+                int initted=Mix_Init(flags);
+                if(initted&flags != flags) {
+                    printf("Mix_Init: Failed to init required ogg and mod support!\n");
+                    printf("Mix_Init: %s\n", Mix_GetError());
+                    // handle error
+                }*/
+
+        if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT ,2,4096)<0){
+            std::cout<<"can't open audio"<<std::endl;
+        }
+
+        gMusic=Mix_LoadMUS("materials/sounds/level.mp3");
+        if(gMusic==NULL){
+            printf("Mix_LoadMUS(\"song.wav\"): %s\n", Mix_GetError());
+            std::cout<<"can't load music"<<std::endl;
+        }
+        chunks.push_back(Mix_LoadWAV("materials/sounds/shoot.wav"));
+        chunks.push_back(Mix_LoadWAV("materials/sounds/select.wav"));
+        chunks.push_back(Mix_LoadWAV("materials/sounds/closed.wav"));
+        chunks.push_back(Mix_LoadWAV("materials/sounds/open.wav"));
+        chunks.push_back(Mix_LoadWAV("materials/sounds/hit.wav"));
+
+        for(int i=0;i<chunks.size();i++){
+            if(chunks[i]==NULL){
+                std::cout<<"can't load chunk"<<std::to_string(i)<<std::endl;
+
+            }
+        }
+
+        Mix_VolumeChunk(chunks[0],15);
+        Mix_VolumeChunk(chunks[2],40);
+        Mix_VolumeChunk(chunks[4],MIX_MAX_VOLUME);
+
+
+    }
+    void playMusic(){
+        Mix_PlayMusic(gMusic,-1);
+    }
+    void stopMusic(){
+        Mix_HaltMusic();
+    }
+    void playChunk(int chunk_number){
+
+        Mix_PlayChannel(-1,chunks[chunk_number],0);
+    }
     ~engine(){
+        for(int i=0;i<chunks.size();i++){
+            Mix_FreeChunk(chunks[i]);
+            chunks[i]=NULL;
+        }
+        Mix_FreeMusic(gMusic);
+        gMusic=NULL;
+
+
+        Mix_Quit();
         SDL_DestroyRenderer(rend);
         SDL_DestroyWindow(window);
         SDL_Quit();
@@ -693,6 +755,12 @@ public:
        activateProgBackground(0);
        render_triangle(background1);
        render_triangle(background2);
+
+    }
+    void render_numbackground(u_int8_t textnum){
+        activateProgBackground(textnum);
+        render_triangle(background1);
+        render_triangle(background2);
 
     }
     void render_hp(uint8_t hp,bool cargo_open){

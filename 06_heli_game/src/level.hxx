@@ -42,7 +42,7 @@ public:
         game_eng=engine_in;
 
         if (!game_eng->load_texture(map_name,0)){
-            std::cout<<"can't load "<<map_name<<std::endl;
+            std::cout<<"cant load "<<map_name<<std::endl;
         }
 
         //init helicopter and blow animation
@@ -119,7 +119,7 @@ public:
         for(int i=0;i<number_of_heals;i++){
             file>>x>>y>>appear_distance;
             heals.push_back(heal(x,y));
-            std::cout<<x<<" "<<y<<" "<<appear_distance<<std::endl;
+            //std::cout<<x<<" "<<y<<" "<<appear_distance<<std::endl;
 
         }
 
@@ -150,10 +150,12 @@ public:
                      if(cargo_open==true){
                          cargo_open=false;
                          //std::cout<<"close"<<std::endl;
-
+                         game_eng->playChunk(2);
                      }else{
                          cargo_open=true;
                          //std::cout<<"open"<<std::endl;
+                         game_eng->playChunk(3);
+
                      }
 
                      break;
@@ -260,6 +262,7 @@ public:
             for(int i=0;i<enemies.size();i++){
                 if(enemies[i].getFireDistance()>getDistance(enemies[i])){
                     rockets.push_back(rocket(enemies[i].getMoveMat(),0.5f));
+                    game_eng->playChunk(0);
                 }
             }
 
@@ -293,9 +296,12 @@ public:
         //check
         for(auto it=rockets.begin();it!=rockets.end();){
             if(getDistanceRocket(*it)<0.05f){
+                game_eng->playChunk(4);
+
                blow->start();
                hp--;
                it=rockets.erase(it);
+
             }else{
                 it++;
             }
@@ -348,10 +354,20 @@ public:
         while(q==true){
             //loop start
 
-            if(targets.size()==0 || hp==0){
+            /*if(targets.size()==0 || hp==0){
+                q=false;
+                break;
+            }*/
+
+            if(targets.size()==0){
                 q=false;
                 break;
             }
+            if(hp==0){
+                q=false;
+                break;
+            }
+
 
 
             q=level_event();

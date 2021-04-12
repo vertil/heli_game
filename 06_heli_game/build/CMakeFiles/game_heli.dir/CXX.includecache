@@ -45,6 +45,8 @@ SDL2/SDL.h
 -
 thread
 -
+SDL2/SDL_mixer.h
+-
 glm/glm.hpp
 /home/vertil/dev/06_heli_game/src/glm/glm.hpp
 glm/gtc/matrix_transform.hpp
@@ -71,8 +73,8 @@ glad/glad.h
 /home/vertil/dev/06_heli_game/src/glad/glad.h
 
 /home/vertil/dev/06_heli_game/src/game.cxx
-level.hxx
-/home/vertil/dev/06_heli_game/src/level.hxx
+menu.hxx
+/home/vertil/dev/06_heli_game/src/menu.hxx
 
 /home/vertil/dev/06_heli_game/src/glad/glad.h
 KHR/khrplatform.h
@@ -1517,6 +1519,12 @@ iostream
 -
 lodepng.h
 /home/vertil/dev/06_heli_game/src/lodepng.h
+
+/home/vertil/dev/06_heli_game/src/menu.hxx
+level.hxx
+/home/vertil/dev/06_heli_game/src/level.hxx
+filesystem
+-
 
 /home/vertil/dev/06_heli_game/src/rocket.hxx
 engine.hxx

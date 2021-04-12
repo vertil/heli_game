@@ -211,6 +211,7 @@ CMakeFiles/game_heli.dir/game.cxx.o: /home/vertil/dev/06_heli_game/src/heal.hxx
 CMakeFiles/game_heli.dir/game.cxx.o: /home/vertil/dev/06_heli_game/src/heli.hxx
 CMakeFiles/game_heli.dir/game.cxx.o: /home/vertil/dev/06_heli_game/src/level.hxx
 CMakeFiles/game_heli.dir/game.cxx.o: /home/vertil/dev/06_heli_game/src/lodepng.h
+CMakeFiles/game_heli.dir/game.cxx.o: /home/vertil/dev/06_heli_game/src/menu.hxx
 CMakeFiles/game_heli.dir/game.cxx.o: /home/vertil/dev/06_heli_game/src/rocket.hxx
 CMakeFiles/game_heli.dir/game.cxx.o: /home/vertil/dev/06_heli_game/src/structs.hxx
 CMakeFiles/game_heli.dir/game.cxx.o: /home/vertil/dev/06_heli_game/src/target.hxx
