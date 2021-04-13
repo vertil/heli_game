@@ -1,6 +1,9 @@
 # heli_game
 
 Simple 2d Game
+For Linux
+
+Compiled on Fedora 33(can be portable to windows), port to Android - in progress
 
 Based on: 
 * SDL2
